@@ -1,0 +1,40 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: emqx-eks-gitops
+  region: eu-west-1
+  version: "1.17"
+
+managedNodeGroups:
+  - name: eks-gitops-nodegroup1
+    instanceType: t2.medium
+    minSize: 2
+    desiredCapacity: 2
+    maxSize: 4
+    privateNetworking: true
+    availabilityZones: ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+    iam:
+      withAddonPolicies:
+        imageBuilder: true   #Adding permissions to access ECR
+        albIngress: true
+        cloudWatch: true
+        autoScaler: true
+        
+
+
+# other cluster config ...
+
+git:
+  repo:
+    url: "git@github.com:600lyy/emqx-eks-gitops.git" #Change to your username
+    branch: master
+    fluxPath: "flux/"
+    user: "600lyy" #Change to your username
+    email: "600lyy@users.noreply.github.com" #Change to your username
+  operator:
+    namespace: "flux"
+    withHelm: true
+  bootstrapProfile:
+    source: app-dev  #We are using the appdev bootstrap profile for this demo 
+    revision: master
