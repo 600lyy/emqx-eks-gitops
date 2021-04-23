@@ -7,8 +7,8 @@ metadata:
 spec:
   releaseName: emqx-cluster
   chart:
-    repository: https://repos.emqx.io/charts/
-    path: emqx/emqx
+    repository: https://github.com/emqx/emqx-rel/deploy/
+    path: charts/emqx
   values:
     service:
       type: NodePort
