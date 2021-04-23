@@ -1,0 +1,14 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: emqx-cluster
+  namespace: default
+spec:
+  releaseName: emqx-cluster
+  chart:
+    repository: https://repos.emqx.io/charts/
+    path: emqx/emqx
+  values:
+    service:
+      type: NodePort
