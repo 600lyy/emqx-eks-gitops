@@ -5,10 +5,8 @@ metadata:
   name: emqx-cluster
   namespace: default
 spec:
-  releaseName: emqx-cluster
-  url: https://github.com/emqx/emqx-rel/deploy/charts/emqx
-  ref:
-    branch: master
+  interval: 1m
+  url: https://github.com/emqx/emqx-rel/tree/master/deploy/charts/emqx
   values:
     service:
       type: NodePort
